@@ -63,13 +63,14 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;  /*<!-- added to make them rotate from the center-->*/
+      transform: rotate(90deg); /*<!-- added to make them start vertical position poiting number 12-->*/
+      transition: all 0.1s;
+      transition-Timing-Function: cubic-bezier(0, 1.88, 0, 1.1);
     }
 
   </style>
 
-  <script>
-
-
-  </script>
+  <script src="clockScript.js" defer>  </script>
 </body>
 </html>
