@@ -45,8 +45,22 @@
     }
   </style>
 
-  <script>
-  </script>
+<!--Adding the "root" style below-->
+<style>
+  :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+  }
+  
+  img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+  }
+  </style>
+
+  <script src="script.js" defer>   </script>
 
 </body>
 </html>
