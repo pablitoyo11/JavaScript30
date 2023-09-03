@@ -96,7 +96,60 @@
     </div>
   </div>
 
+
 <script>
+let panel = document.querySelector(".inbox");
+let shiftDown =false;
+let checks = document.querySelectorAll('.inbox [type="checkbox"]');
+let LastCheck=0;
+
+
+panel.addEventListener("keydown", e => { 
+  if (e.code === "ShiftLeft") { 
+    shiftDown=true;
+    checks.checked = true;
+  } 
+}); 
+
+panel.addEventListener("keyup", e => { 
+  if (e.code === "ShiftLeft") { 
+    shiftDown=false;
+  } 
+}); 
+
+/*
+function handleCheck(e){
+  console.log(e);
+  LastCheck=this;
+  console.log(LastCheck);
+}
+checks.forEach(checkbox=> checkbox.addEventListener('click', handleCheck));
+*/
+
+const checksArray = Array.from(checks);
+
+checks.forEach(SecondCheck=> SecondCheck.addEventListener('click', e =>{
+  let indexOfSecondCheck = checksArray.findIndex(object => {
+  return object === SecondCheck;
+});
+if (shiftDown){
+  checkBoxesSelected(LastCheck,indexOfSecondCheck);
+}
+LastCheck=indexOfSecondCheck;
+}));
+
+
+function checkBoxesSelected(first,second) {
+  if (first>second){
+    let auxilioporfavor=second;
+    second=first;
+    first=auxilioporfavor;
+  }
+for (let i = first; i <= second; i++) {
+    checks[i].checked = true;}
+}
 </script>
+
+
 </body>
 </html>
