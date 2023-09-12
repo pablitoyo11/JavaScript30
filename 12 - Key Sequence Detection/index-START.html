@@ -9,4 +9,28 @@
   <body>
     <script></script>
   </body>
+
+  <script>
+    let pressedKeys =[];
+    const secretCode = "pablomu";
+
+    document.addEventListener("keydown", (e)=> {
+      pressedKeys.push(e.key);      
+      console.log(pressedKeys.length);
+      console.log(pressedKeys);
+      if (pressedKeys.length === secretCode.length) {
+        if (pressedKeys.join("").includes(secretCode)){
+          console.log("DING DING!")
+          cornify_add();
+        }
+      }
+      if (pressedKeys.length >= secretCode.length) {
+        pressedKeys.splice(0,1);
+      }
+    
+    });
+
+  </script>
+
+
 </html>
