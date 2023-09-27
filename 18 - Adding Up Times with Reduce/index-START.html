@@ -183,6 +183,54 @@
     </li>
   </ul>
 <script>
+/*
+let videoSection = document.querySelector(".videos");
+let videoDuration = videoSection.querySelectorAll("[data-time]");
+let totalSecondsDuration=0;
+
+videoDuration.forEach(video => {
+  let minutes,seconds=0;
+  let duration = video.dataset.time;
+  minutes = duration.substring(0, duration.indexOf(':'));
+  seconds = duration.substring(duration.indexOf(':')).replace(":", ''); ;
+  totalSecondsDuration+=parseInt(seconds)+60*parseInt(minutes);
+});
+
+function hourMinSec() {
+  //hours = Math.floor(totalSecondsDuration/3600);
+  //mins = Math.floor((totalSecondsDuration-3600*Math.floor(totalSecondsDuration/3600))/60);
+  //seconds = totalSecondsDuration%60;
+  console.log("horas",Math.floor(totalSecondsDuration/3600),
+   "minutos",Math.floor((totalSecondsDuration-3600*Math.floor(totalSecondsDuration/3600))/60),
+   "segundos",totalSecondsDuration%60
+  );
+}
+hourMinSec();
+
+*/
+const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
+
+const seconds = timeNodes
+  .map(node => node.dataset.time)
+    .map(timeCode => {
+      const [mins,secs] =timeCode.split(":").map(parseFloat);
+      return (mins *60) + secs;
+      console.log(mins,secs);
+    })
+    .reduce((total, videoSeconds) =>{
+      return total + videoSeconds
+    })
+  
+let secondsLeft = seconds;
+const hours= Math.floor(secondsLeft/3600);
+secondsLeft = secondsLeft %3600;
+const mins=Math.floor(secondsLeft/60);
+secondsLeft = secondsLeft %60;
+console.log("hours",hours,
+  "minutes",mins,
+  "seconds",secondsLeft);
+
+
 </script>
 </body>
 </html>
