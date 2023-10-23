@@ -28,6 +28,43 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    const triggers = document.querySelectorAll("a");
+    const highlight = document.createElement("span");
+    highlight.classList.add("highlight");
+    document.body.append(highlight);
+
+    function highlightLink(){
+      const linkCoords = this.getBoundingClientRect();
+      
+      console.log(this);
+      console.log(linkCoords); 
+      const coords ={
+        width:linkCoords.width,
+        height: linkCoords.height,
+        top: linkCoords.top + window.scrollY,
+        left: linkCoords.left +window.scrollX
+      }
+
+  
+    highlight.style.width = `${linkCoords.width}px`;
+    highlight.style.height = `${linkCoords.height}px`;
+    
+
+    highlight.style.transform = `translate(${coords.left}px , ${coords.top}px )`;
+   /*
+   //"using transform / translate is often better"
+    highlight.style.position =  `absolute`; //using fixed it fits at any highlight, but scorlling makes the old hightlight to follow along the screen
+    highlight.style.top = `${coords.top}px`; 
+    highlight.style.left =  `${coords.left}px`;
+    */
+  
+   //  left:${linkCoords.x}px ; top: ${linkCoords.y}px`;
+    }
+
+  triggers.forEach(a => a.addEventListener("mouseenter", highlightLink));
+
+
+
   </script>
 </body>
 </html>
