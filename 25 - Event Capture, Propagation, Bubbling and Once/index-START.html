@@ -44,6 +44,21 @@
 <button></button>
 <script>
 
+const divs = document.querySelectorAll("div")
+
+  function logText(e) {
+    console.log(this.classList.value);
+
+    //e.stopPropagation();
+
+  }
+
+  divs.forEach(div => div.addEventListener("click", logText, 
+  {
+    capture: false, //if set to true it bubbles from deep to up
+    once:true //makes each event listener to work only once per element
+  }));
+
 </script>
 </body>
 </html>
