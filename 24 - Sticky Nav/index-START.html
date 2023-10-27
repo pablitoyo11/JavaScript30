@@ -56,6 +56,45 @@
 
 <script>
 
+  const navBar=document.querySelector('#main');
+  const navCoords = navBar.getBoundingClientRect();
+  const topOfNav = navBar.offsetTop;
+
+//  navBar.style.position="sticky"; // making navBar "position sticky" would work, without editing style file
+  
+/*
+//this function makes stickynav follow trhough scroll
+
+  function stickNav(){
+    if(window.scrollY>navCoords.top){
+      let suma= window.scrollY-192.5;
+    navBar.style.top = `${suma}px`;
+    }
+    else {
+      navBar.style.top = `0px`;
+    }
+  };
+
+window.addEventListener("scroll", stickNav);
+*/
+ 
+
+function fixNav(){
+
+  if(window.scrollY>=topOfNav){
+    document.body.style.paddingTop = navBar.offsetHeight+'px';
+    document.body.classList.add("fixed-nav");
+
+  }
+  else{
+    document.body.style.paddingTop = "0px"; // i think this is unnecesary making no difference
+    document.body.classList.remove("fixed-nav");
+  }
+}
+window.addEventListener("scroll", fixNav);
+
+
+
 </script>
 
 </body>
