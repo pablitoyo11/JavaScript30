@@ -36,6 +36,62 @@
   </div>
 
 <script>
+
+const items = document.querySelector(".items");
+let mosueIsDown;
+let mouseStartPos;
+let mouseEndPos;
+let itemsScrollStartPos;
+
+items.addEventListener("mousedown", (e)=>{
+  mosueIsDown = true;
+  items.classList.add("active");
+
+  mouseStartPos = {
+            x: e.clientX,
+            y: e.clientY
+        };
+
+  itemsScrollStartPos = {
+            x: items.scrollLeft,
+            y: items.scrollTop
+        };
+
+
+});
+
+items.addEventListener("mouseleave", ()=>{
+   mosueIsDown = false;
+
+
+});
+items.addEventListener("mouseup", (e)=>{
+  mosueIsDown = false;
+  items.classList.remove("active");
+
+  mouseEndPos = {
+    x: e.clientX,
+    y: e.clientY
+  };
+  
+
+});
+items.addEventListener("mousemove", (e)=>{
+  
+  if (mosueIsDown){  
+    items.scroll({
+      top: (itemsScrollStartPos.y+((mouseStartPos.y)-(e.clientY))),
+      left: (itemsScrollStartPos.x+((mouseStartPos.x)-(e.clientX))),
+      behavior: "instant",
+    });
+  }
+  e.preventDefault();
+      
+
+
+});
+
+  
 </script>
 
   </body>
